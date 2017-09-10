@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Maid List</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let c of maids">
+      <ion-avatar item-left>
+        <!-- <img src="{{c.gender}}"> -->
+      </ion-avatar>
+      <h2>{{c.firstName}}</h2>
+      <p>age: {{c.age}}</p>
+      <p>Region: {{c.religion}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>

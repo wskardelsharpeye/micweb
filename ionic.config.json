@@ -1,0 +1,12 @@
+{
+  "name": "ionic3-angular4",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {},
+  "proxies": [
+    {
+      "path": "/mic", 
+      "proxyUrl": "http://localhost:8080/mic"
+    }
+  ]
+}
