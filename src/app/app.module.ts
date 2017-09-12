@@ -8,7 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { Rest } from '../providers/rest';
-import { Maid } from '../providers/maid';
+import { MaidService } from '../providers/maid-service';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service'
 
 @NgModule({
@@ -31,7 +31,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service'
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Rest,
-    Maid, 
+    MaidService, 
     AuthServiceProvider
   ]
 })

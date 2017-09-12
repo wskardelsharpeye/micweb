@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, IonicPage, ToastController,Loading,LoadingController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-import { Account } from '../../models/Account'
+import { Account } from '../../models/Account';
 @IonicPage()
 @Component({
   selector: 'page-home',

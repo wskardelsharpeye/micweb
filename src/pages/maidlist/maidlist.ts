@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { Maid } from '../../providers/maid';
+import { MaidService } from '../../providers/maid-service';
 
 /**
  * Generated class for the MaidlistPage page.
@@ -21,7 +21,7 @@ export class MaidlistPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public maid: Maid) {
+              public maidService: MaidService) {
   }
 
   ionViewDidLoad() {
@@ -30,7 +30,7 @@ export class MaidlistPage {
   }
 
   getMaids() {
-    this.maid.getMaids()
+    this.maidService.getMaids()
     .subscribe(
       maids => this.maids = maids,
       error =>  this.errorMessage = <any>error);
