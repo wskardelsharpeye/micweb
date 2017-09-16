@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { MaidService } from '../../providers/maid-service';
 
+
+
 /**
  * Generated class for the MaidlistPage page.
  *

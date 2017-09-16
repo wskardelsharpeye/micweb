@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title>
+      Role 
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="presentActionSheet()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content class="login-content" padding>
+<ion-row class="logo-row">
+ 
+  <ion-col>
+    <div>
+      <p style="font-weight: bold; font-size: 20px; color: white;">You have successfully signed up</p>
+      <p style="font-weight: bold; font-size: 10px; color: white;">please follow the step below to finalize the process</p>
+    </div>
+  </ion-col>
+ 
+</ion-row>
+
+<ion-row class="logo-row">
+  
+   <ion-col>
+     <div>
+      <button ion-button icon-left (click)="fillCadidateProfile()">
+        <ion-icon name="home"></ion-icon>
+         Searching for housemaid job in China
+      </button>
+     </div>
+   </ion-col>
+ </ion-row>
+
+ <ion-row class="logo-row">
+   <ion-col>
+     <div>
+      <button ion-button icon-left (click)="fillEmployerProfile()">
+        <ion-icon name="home"></ion-icon>
+        Looking for Housemaid for your family
+      </button>
+     </div>
+   </ion-col>
+ </ion-row>
+
+</ion-content>

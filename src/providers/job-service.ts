@@ -7,7 +7,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
-import { Maid } from '../models/Maid';
+import { Job } from '../models/Job';
 import { AppConfig } from '../app/app.config'
 
 /*
@@ -17,31 +17,20 @@ import { AppConfig } from '../app/app.config'
   for more info on providers and Angular 2 DI.
 */
 @Injectable()
-export class MaidService {
+export class JobService {
 
   private baseUrl = AppConfig.getDevUrl();
 
-  private url_getMaids = this.baseUrl + '/maid/findAll';
-
-  private url_saveProfile = this.baseUrl + '/maid/saveProfile'
+  private url_findAll = this.baseUrl + '/job/findAll';
   
   private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(public http: Http) {}
 
-  getMaids(): Observable<string[]> {
-    return this.http.get(this.url_getMaids)
+  findAll(): Observable<Job[]> {
+    return this.http.get(this.url_findAll)
                     .map(this.extractData)
                     .catch(this.handleError);
-  }
-
-  //submit profile
-  submitProfile(maid: Maid): Observable<any> {
-    return this.http
-      .post(this.url_saveProfile, JSON.stringify(maid),{headers: this.headers})
-      .map(this.extractData)
-      .do(this.logResponse)
-      .catch(this.handleError);
   }
 
   private extractData(res: Response) {

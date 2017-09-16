@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Job List</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="presentActionSheet()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let c of jobs">
+      <h2>Title: {{c.jobTitle}}</h2>
+      <p>experience demand: {{c.experience}}</p>
+      <p>language demand: {{c.languageDemand}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>

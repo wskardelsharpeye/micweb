@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Maid } from '../../models/Maid';
+import { Account } from '../../models/Account';
+import { MaidService } from '../../providers/maid-service';
+import { JoblistPage } from '../joblist/joblist';
 
-import { MaidService } from '../../providers/maid-service'
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+
 /**
  * Generated class for the FillCadidateProfilePage page.
  *
@@ -18,8 +22,13 @@ export class FillCadidateProfilePage {
 
   createSuccess = false;
   maid = {} as Maid;
+  currentAccount = {} as Account;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public maidService: MaidService,private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public maidService: MaidService,
+    private alertCtrl: AlertController,
+    private auth: AuthServiceProvider) {
   }
 
   ionViewDidLoad() {
@@ -27,13 +36,14 @@ export class FillCadidateProfilePage {
   }
 
   submitProfile(maid: Maid) {
+    maid.accountId = this.auth.getAccountInfo().id;
     this.maidService.submitProfile(maid).subscribe(
       response => {
         if(response) {
           this.createSuccess = true;
-          this.showPopup("Success", "Account created.");
+          this.showPopup("Success", "profile submit successfully.");
         } else {
-          this.showPopup("Error", "Problem creating account.");
+          this.showPopup("Error", "Problem submitting profile.");
         }
       },
       error => {
@@ -51,7 +61,7 @@ export class FillCadidateProfilePage {
           text: 'OK',
           handler: data => {
             if (this.createSuccess) {
-              //this.navParams.popToRoot();
+              this.navCtrl.setRoot(JoblistPage);
             }
           }
         }

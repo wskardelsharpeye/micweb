@@ -1,3 +1,4 @@
+import { IonicStorageModule } from '@ionic/storage/es2015';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -9,7 +10,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { Rest } from '../providers/rest';
 import { MaidService } from '../providers/maid-service';
-import { AuthServiceProvider } from '../providers/auth-service/auth-service'
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+import { JobService } from '../providers/job-service';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service'
     IonicModule.forRoot(MyApp, {
       preloadModules: true
     }),
-    HttpModule
+    HttpModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -32,7 +35,8 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service'
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Rest,
     MaidService, 
-    AuthServiceProvider
+    AuthServiceProvider,
+    JobService
   ]
 })
 export class AppModule {}

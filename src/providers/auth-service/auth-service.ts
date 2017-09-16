@@ -1,18 +1,24 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { Http,Headers,RequestOptions } from '@angular/http';
-import { Account } from '../../models/Account'
+import 'rxjs/add/operator/do';
+import { Http, Headers, RequestOptions , Response} from '@angular/http';
+import { Account } from '../../models/Account';
+import { AppConfig } from '../../app/app.config';
 
  
 @Injectable()
 export class AuthServiceProvider {
 
-  private apiUrl = 'http://localhost:8100/mic/account/login';
+  private baseUrl = AppConfig.getDevUrl();
 
-  isAuthenticated: boolean = false;
+  private url_login = this.baseUrl + '/account/login';
+
+  private url_register = this.baseUrl + '/account/save';
 
   currentAccount: Account;
+
+  private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(public http: Http) {}
 
@@ -23,31 +29,28 @@ export class AuthServiceProvider {
       return Observable.create(observer => {
          let headers = new Headers({ 'Content-Type': 'application/json' });
          let options = new RequestOptions({ headers: headers });
-          this.http.get(this.apiUrl + "?account=" + credentials.account + "&password=" + credentials.password, options).subscribe(data => {
-          console.log(data);
-          if(data.json().account) {
-              this.currentAccount = data.json();
-              let access = true;
-              observer.next(access);
+          this.http.get(this.url_login + "?account=" + credentials.account + "&password=" + credentials.password, options).subscribe(data => {
+          this.currentAccount = data.json();
+          //candidates
+          //employers
+          //assistant
+          //newcomer
+          if(this.currentAccount.account) {
+              observer.next(this.currentAccount.role);
           } else {
-             let access = false;
-             observer.next(access);
+             observer.next(null);
           }
         });
       });
     
   }
- 
-  public register(credentials) {
-    if (credentials.email === null || credentials.password === null) {
-      return Observable.throw("Please insert credentials");
-    } else {
-      // At this point store the credentials to your backend!
-      return Observable.create(observer => {
-        observer.next(true);
-        observer.complete();
-      });
-    }
+  register(account: Account): Observable<any> {
+ //public register(account: Account): Observable<any>{
+    return this.http
+    .post(this.url_register, JSON.stringify(account),{headers: this.headers})
+    .map(this.extractData)
+    .do(this.logResponse)
+    .catch(this.handleError);
   }
  
   public getAccountInfo() : Account {
@@ -61,4 +64,27 @@ export class AuthServiceProvider {
       observer.complete();
     });
   }
+
+  private extractData(res: Response) {
+    let body = res.json();
+    return body || { };
+  }
+
+  private logResponse(res: Response) {
+    console.log(res);
+  }
+
+  private handleError (error: Response | any) {
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.error || JSON.stringify(body);
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    return Observable.throw(errMsg);
+  }
+
 }

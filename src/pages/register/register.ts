@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, IonicPage } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
- 
+import { Account } from '../../models/Account';
+import { LoginPage } from '../login/login';
 @IonicPage()
 @Component({
   selector: 'page-register',
@@ -9,16 +10,17 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 })
 export class RegisterPage {
   createSuccess = false;
-  registerCredentials = { 
-    email: '',
-    password: '' 
-  };
- 
-  constructor(private nav: NavController, private auth: AuthServiceProvider, private alertCtrl: AlertController) { }
+  account = {} as Account;
+  
+  constructor(private nav: NavController,
+              private auth: AuthServiceProvider,
+              private alertCtrl: AlertController) {
+
+  }
  
   public register() {
-    this.auth.register(this.registerCredentials).subscribe(success => {
-      if (success) {
+    this.auth.register(this.account).subscribe(response => {
+      if (response) {
         this.createSuccess = true;
         this.showPopup("Success", "Account created.");
       } else {
@@ -39,7 +41,7 @@ export class RegisterPage {
           text: 'OK',
           handler: data => {
             if (this.createSuccess) {
-              this.nav.popToRoot();
+              this.nav.setRoot('LoginPage');
             }
           }
         }

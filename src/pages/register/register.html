@@ -1,23 +1,29 @@
+<!--
+  Generated template for the FillCadidateProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
 <ion-header>
-  <ion-navbar color="dark">
-    <ion-title>Register</ion-title>
-  </ion-navbar>
-</ion-header>
- 
-<ion-content class="login-content" padding>
-  <div class="login-box">
-    
-    <form (ngSubmit)="register()" #registerForm="ngForm">
+  
+    <ion-navbar color="dark">
+      <ion-title>Sign up</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding class = "login-content">
+    <form (ngSubmit)="register(account)" #registerForm="ngForm">
       <ion-row>
         <ion-col>
           <ion-list inset>
-            
             <ion-item>
-              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
+              <ion-input type="text" placeholder="Email | PhoneNo" name="firstName" [(ngModel)]="account.account" required></ion-input>
             </ion-item>
             
             <ion-item>
-              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
+              <ion-input type="password" placeholder="Password" name="lastName" [(ngModel)]="account.password" required></ion-input>
             </ion-item>
             
           </ion-list>
@@ -26,10 +32,9 @@
       
       <ion-row>
         <ion-col class="signup-col">
-          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Register</button>
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">register</button>
         </ion-col>
       </ion-row>
-      
     </form>
-  </div>
-</ion-content>
+  </ion-content>
+  

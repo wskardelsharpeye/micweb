@@ -6,33 +6,181 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>fillCadidateProfile</ion-title>
+  <ion-navbar color="dark">
+    <ion-title>Profile</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  <form (ngSubmit)="submitProfile(maid)" #registerForm="ngForm">
+<ion-content padding class="login-content">
+
+    <ion-card>
+        <ion-card-header>
+          Glad you are here :)
+        </ion-card-header>
+        <ion-card-content>
+            Before apply for job, please finish your Profile first. Your infomation will be display to Employer only.
+        </ion-card-content>
+      </ion-card>
+
+  <form (ngSubmit)="submitProfile(maid)">
     <ion-row>
       <ion-col>
-        <ion-list inset>
+        <ion-list>
           <ion-item>
             <ion-input type="text" placeholder="First Name" name="firstName" [(ngModel)]="maid.firstName" required></ion-input>
           </ion-item>
           
           <ion-item>
-            <ion-input type="password" placeholder="Last Name" name="lastName" [(ngModel)]="maid.lastName" required></ion-input>
+            <ion-input type="text" placeholder="Last Name" name="lastName" [(ngModel)]="maid.lastName" required></ion-input>
           </ion-item>
           
+          <ion-item>
+              <ion-label>Gender</ion-label>
+              <ion-select name="gender" [(ngModel)]="maid.gender">
+                <ion-option value="Female">Female</ion-option>
+                <ion-option value="Male">Male</ion-option>
+              </ion-select>
+            </ion-item>
+
+            
+
+
+            <ion-item>
+                <ion-label>Age</ion-label>
+                <ion-select  name="age"  [(ngModel)]="maid.age">
+                  <ion-option value="18">18</ion-option>
+                  <ion-option value="19">19</ion-option>
+                  <ion-option value="20">20</ion-option>
+                  <ion-option value="21">21</ion-option>
+                  <ion-option value="22">22</ion-option>
+                  <ion-option value="23">23</ion-option>
+                  <ion-option value="24">24</ion-option>
+                  <ion-option value="25">25</ion-option>
+                  <ion-option value="26">26</ion-option>
+                  <ion-option value="27">27</ion-option>
+                  <ion-option value="28">28</ion-option>
+                  <ion-option value="29">29</ion-option>
+                  <ion-option value="30">30</ion-option>
+                  <ion-option value="31">31</ion-option>
+                  <ion-option value="32">32</ion-option>
+                  <ion-option value="33">33</ion-option>
+                  <ion-option value="34">34</ion-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-item>
+                  <ion-label>Nationality</ion-label>
+                  <ion-select  name="nationality" [(ngModel)]="maid.nationality">
+                    <ion-option value="Philippines">Philippines</ion-option>
+                    <ion-option value="Indonesia">Indonesia</ion-option>
+                    <ion-option value="China">China</ion-option>
+                  </ion-select>
+              </ion-item>
+
+              <ion-item>
+                  <ion-input type="text" placeholder="phone" name="phone" [(ngModel)]="maid.phone"></ion-input>
+              </ion-item>
+
+
+              <ion-item>
+                  <ion-input type="text" placeholder="address" name="address"  [(ngModel)]="maid.address"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                  <ion-label>Expectation Salary</ion-label>
+                  <ion-select name="expectionSalary" [(ngModel)]="maid.expectionSalary">
+                    <ion-option value="5000-8000">5000-8000 HKD</ion-option>
+                    <ion-option value="8000-12000">8000-12000 HKD</ion-option>
+                    <ion-option value="12000-16000">12000-16000 HKD</ion-option>
+                    <ion-option value="16000-20000">16000-20000 HKD</ion-option>
+                  </ion-select>
+              </ion-item>
+
+              <ion-item>
+                  <ion-label>Experience</ion-label>
+                  <ion-select name="workingExperience" [(ngModel)]="maid.workingExperience">
+                    <ion-option value="1">1 Year</ion-option>
+                    <ion-option value="2">2 Year</ion-option>
+                    <ion-option value="3">3 Year</ion-option>
+                    <ion-option value="4">4 Year</ion-option>
+                    <ion-option value="5">5 Year</ion-option>
+                    <ion-option value="6">6 Year</ion-option>
+                    <ion-option value="7">7 Year</ion-option>
+                    <ion-option value="8">8 Year</ion-option>
+                  </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Education</ion-label>
+                    <ion-select name="education" [(ngModel)]="maid.education">
+                      <ion-option value="Less than high school">Less than high school</ion-option>
+                      <ion-option value="High school">High school</ion-option>
+                      <ion-option value="College">College</ion-option>
+                      <ion-option value="Bachelor">Bachelor</ion-option>
+                      <ion-option value="Master">Master</ion-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>First Language</ion-label>
+                    <ion-select name="firstLanguage" [(ngModel)]="maid.firstLanguage">
+                      <ion-option value="English">English</ion-option>
+                      <ion-option value="Tagalog">Tagalog</ion-option>
+                      <ion-option value="Indonesian">Indonesian</ion-option>
+                      <ion-option value="Mandarin">Mandarin</ion-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Second Language</ion-label>
+                    <ion-select name="secondLanguage" [(ngModel)]="maid.secondLanguage">
+                      <ion-option value="English">English</ion-option>
+                      <ion-option value="Tagalog">Tagalog</ion-option>
+                      <ion-option value="Indonesian">Indonesian</ion-option>
+                      <ion-option value="Mandarin">Mandarin</ion-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Marital Status</ion-label>
+                    <ion-select name="maritalStatus" [(ngModel)]="maid.maritalStatus">
+                      <ion-option value="Single ">Single</ion-option>
+                      <ion-option value="Married">Married</ion-option>
+                      <ion-option value="Separated ">Separated </ion-option>
+                      <ion-option value="Divorced">Divorced</ion-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-input type="text" name="skype" placeholder="Skype" [(ngModel)]="maid.skype"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-input type="text" name="wechat" placeholder="Wechat" [(ngModel)]="maid.wechat"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-input type="text" name="email" placeholder="Email" [(ngModel)]="maid.email"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Job Status</ion-label>
+                    <ion-select name="jobStatus" [(ngModel)]="maid.jobStatus">
+                      <ion-option value="unemployment">unemployment</ion-option>
+                      <ion-option value="on the job">on the job</ion-option>
+                      <ion-option value="Looking for new job ">Looking for new job</ion-option>
+                    </ion-select>
+                </ion-item>
+
         </ion-list>
       </ion-col>
     </ion-row>
     
     <ion-row>
       <ion-col class="signup-col">
-        <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">submit</button>
+        <button ion-button class="submit-btn" full type="submit">submit</button>
       </ion-col>
     </ion-row>
   </form>
